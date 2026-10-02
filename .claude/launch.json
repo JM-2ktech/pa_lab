@@ -11,7 +11,7 @@
     {
       "name": "pa_lab-static",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "4012", "--directory", "_site"],
+      "runtimeArgs": [".claude/serve_site.py", "4012"],
       "port": 4012,
       "url": "http://localhost:4012"
     }
