@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pa_lab",
+      "runtimeExecutable": "ruby",
+      "runtimeArgs": ["-S", "bundle", "exec", "jekyll", "serve", "--livereload", "--port", "4002", "--livereload-port", "35731"],
+      "port": 4002,
+      "url": "http://localhost:4002"
+    },
+    {
+      "name": "pa_lab-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4012", "--directory", "_site"],
+      "port": 4012,
+      "url": "http://localhost:4012"
+    }
+  ]
+}

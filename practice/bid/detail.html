@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>공고 상세 — PA 실습</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="banner">실습용 모의 사이트입니다. 기관·공고·금액은 모두 가상입니다.</div>
+<header class="top"><h1>공고 상세</h1></header>
+<main>
+  <table id="detailTable" class="detail">
+    <tr><th>공고번호</th><td id="dNo"></td></tr>
+    <tr><th>공고명</th><td id="dTitle"></td></tr>
+    <tr><th>수요기관</th><td id="dOrg"></td></tr>
+    <tr><th>분류</th><td id="dCat"></td></tr>
+    <tr><th>계약방법</th><td id="dMethod"></td></tr>
+    <tr><th>추정가격(원)</th><td id="dPrice"></td></tr>
+    <tr><th>공고일</th><td id="dPub"></td></tr>
+    <tr><th>마감일</th><td id="dDue"></td></tr>
+    <tr><th>상태</th><td id="dStatus"></td></tr>
+    <tr><th>담당자</th><td id="dManager"></td></tr>
+    <tr><th>연락처</th><td id="dTel"></td></tr>
+  </table>
+  <p><a id="btnList" class="button" href="index.html">목록으로</a></p>
+</main>
+<script src="data.js"></script>
+<script>
+(function () {
+  var no = new URLSearchParams(location.search).get('no');
+  var b = (window.BIDS || []).filter(function (x) { return x.no === no; })[0];
+  var set = function (id, v) { document.getElementById(id).textContent = v; };
+  if (!b) { set('dNo', '해당 공고가 없습니다.'); return; }
+  set('dNo', b.no); set('dTitle', b.title); set('dOrg', b.org); set('dCat', b.cat);
+  set('dMethod', b.method); set('dPrice', b.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+  set('dPub', b.pub); set('dDue', b.due); set('dStatus', b.status);
+  set('dManager', b.manager); set('dTel', b.tel);
+  if (document.referrer.indexOf('/practice/bid/') >= 0) document.getElementById('btnList').href = document.referrer;
+})();
+</script>
+</body>
+</html>
