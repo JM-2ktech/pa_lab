@@ -107,6 +107,8 @@
   // 마지막 쪽에서는 다음 단추를 문서에서 지운다. 숨기기(display:none)만 하면 PAD 가 요소를 찾아 계속 누른다(2026-10-05 실측).
   // 선택기 button[Id="btnNext"] 가 아무것도 찾지 못해야 PAD 페이지 선택기가 멈춘다
   if (page >= Math.max(1, Math.ceil(rows.length / PAGE))) $('btnNext').remove();
+  // 첫 쪽에서는 이전 단추도 지운다(제작자 2026-10-05) — 다음과 같은 규칙으로 맞춘다
+  if (page <= 1) $('btnPrev').remove();
 })();
 </script>
 </body>
