@@ -82,7 +82,7 @@ nav_order: 3
 
 ## 단계 ② 예약 흐름
 
-5. 새 탭에서 [make.powerautomate.com](https://make.powerautomate.com)에 교육 계정으로 로그인합니다.
+5. 새 탭에서 [Power Automate — {{ site.pa.environment }}]({{ site.pa.powerautomate_url }}){:target="_blank"}를 엽니다. 교육 환경의 홈으로 바로 들어갑니다.
 
     ![촬영: Power Automate 홈](../assets/lab2/lab2-05.png)
 

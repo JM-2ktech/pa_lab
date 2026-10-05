@@ -28,6 +28,9 @@ aux_links:
 pa:
   sharepoint_site: "https://2ktech.sharepoint.com/sites/pa_practice"
   environment: "edu261006"
+  environment_id: "b332cf4c-3c06-eebe-abb9-a0474f702984"
+  # 환경을 지정해 여는 주소 — 환경 선택을 건너뛴다
+  powerautomate_url: "https://make.powerautomate.com/environments/b332cf4c-3c06-eebe-abb9-a0474f702984/home"
 
 nav_sort: order
 color_scheme: light

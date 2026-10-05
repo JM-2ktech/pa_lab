@@ -57,7 +57,7 @@ nav_order: 4
 
 ## 단계 ① 공유 링크
 
-1. [make.powerautomate.com](https://make.powerautomate.com) 왼쪽 메뉴 **내 흐름**에서 `월간 점검보고서_HGD` 를 열고 **편집**을 누릅니다.
+1. [Power Automate — {{ site.pa.environment }}]({{ site.pa.powerautomate_url }}){:target="_blank"}를 엽니다. 왼쪽 메뉴 **내 흐름**에서 `월간 점검보고서_HGD` 를 열고 **편집**을 누릅니다.
 
     ![촬영: 내 흐름 목록의 월간 점검보고서_HGD와 편집 단추](../assets/lab3/lab3-01.png)
 
