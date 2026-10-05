@@ -86,8 +86,6 @@
     $('pageInfo').textContent = rows.length ? page + ' / ' + pages : '0 / 0';
     $('btnPrev').disabled = page <= 1;
     $('btnNext').disabled = page >= pages;
-    // 마지막 쪽에서는 다음 단추를 숨긴다 — PAD 페이지 선택기가 여기서 멈춘다
-    $('btnNext').style.display = page >= pages ? 'none' : '';
   }
 
   $('btnSearch').addEventListener('click', function () { go(1); });
@@ -106,6 +104,9 @@
   });
   page = Math.max(1, parseInt(q.get('page'), 10) || 1);
   render();
+  // 마지막 쪽에서는 다음 단추를 문서에서 지운다. 숨기기(display:none)만 하면 PAD 가 요소를 찾아 계속 누른다(2026-10-05 실측).
+  // 선택기 button[Id="btnNext"] 가 아무것도 찾지 못해야 PAD 페이지 선택기가 멈춘다
+  if (page >= Math.max(1, Math.ceil(rows.length / PAGE))) $('btnNext').remove();
 })();
 </script>
 </body>
