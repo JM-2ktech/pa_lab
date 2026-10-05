@@ -50,16 +50,16 @@ nav_order: 3
 ## 준비
 
 - 브라우저는 Microsoft Edge를 씁니다. 당일 배부한 교육 계정 하나로만 로그인합니다.
-- 강사가 안내한 SharePoint 사이트 주소를 확인합니다. 본문에서는 `https://<테넌트>.sharepoint.com/sites/PA실습` 으로 적습니다.
+- 실습 SharePoint 사이트 `pa_practice` 를 씁니다. 주소는 `{{ site.pa.sharepoint_site }}` 입니다.
 - 사이트의 `문서/실습자료/점검기록.xlsx` 는 강사가 올려 둔 공용 파일입니다. 이 랩은 읽기만 합니다.
 
 ---
 
 ## 단계 ① 데이터 확인
 
-1. Edge에서 `PA실습` 사이트를 열고 왼쪽 메뉴의 **문서**를 누릅니다.
+1. Edge에서 `pa_practice` 사이트를 열고 위쪽 메뉴의 **문서**를 누릅니다.
 
-    ![촬영: PA실습 사이트의 문서 라이브러리 — 실습자료·보고서 폴더](../assets/lab2/lab2-01.png)
+    ![촬영: pa_practice 사이트의 문서 라이브러리 — 실습자료·보고서 폴더](../assets/lab2/lab2-01.png)
 
 2. **실습자료** 폴더에서 `점검기록.xlsx` 를 누릅니다. 브라우저의 Excel로 열립니다.
 
@@ -165,9 +165,9 @@ nav_order: 3
 
     ![촬영: 작업 추가 검색 결과의 Excel Online (Business) › 표에 있는 행 나열](../assets/lab2/lab2-18.png)
 
-19. **위치** 드롭다운에서 `PA실습` 사이트를 고릅니다.
+19. **위치** 드롭다운에서 `pa_practice` 사이트를 고릅니다.
 
-    ![촬영: 위치 드롭다운의 SharePoint 사이트 PA실습](../assets/lab2/lab2-19.png)
+    ![촬영: 위치 드롭다운의 SharePoint 사이트 pa_practice](../assets/lab2/lab2-19.png)
 
 20. **문서 라이브러리**에서 **문서**를 고릅니다.
 
@@ -418,9 +418,9 @@ nav_order: 3
 
     ![촬영: 작업 추가 검색 결과의 SharePoint › 파일 만들기](../assets/lab2/lab2-52.png)
 
-53. **사이트 주소** 드롭다운에서 `PA실습` 을 고릅니다. 목록에 없으면 **사용자 지정 값 입력**을 눌러 사이트 주소를 붙여넣습니다.
+53. **사이트 주소** 드롭다운에서 `pa_practice` 을 고릅니다. 목록에 없으면 **사용자 지정 값 입력**을 눌러 사이트 주소를 붙여넣습니다.
 
-    ![촬영: 사이트 주소 = PA실습](../assets/lab2/lab2-53.png)
+    ![촬영: 사이트 주소 = pa_practice](../assets/lab2/lab2-53.png)
 
 54. **폴더 경로**의 폴더 아이콘을 누르고 **문서 › 보고서**를 고릅니다.
 
@@ -467,7 +467,7 @@ nav_order: 3
 
     ![촬영: 건수 카드의 출력 — 점검 32건 · 주의 3 · 이상 2](../assets/lab2/lab2-60.png)
 
-61. `PA실습` 사이트 탭으로 돌아가 **문서 › 보고서** 폴더를 엽니다.
+61. `pa_practice` 사이트 탭으로 돌아가 **문서 › 보고서** 폴더를 엽니다.
 
     ![촬영: 보고서 폴더의 정기점검_2026-09_HGD.html](../assets/lab2/lab2-61.png)
 
@@ -524,7 +524,7 @@ nav_order: 3
 ├─ 선택                   원본 조치필요 · 설비명·구역·점검항목·측정값·결과·조치내용
 ├─ HTML 테이블 만들기      원본 선택 출력
 ├─ 보고서                 작성 · HTML 틀 + 대상월·건수·HTML 테이블 출력
-└─ 파일 만들기            PA실습 · /Shared Documents/보고서 · 정기점검_<대상월>_HGD.html
+└─ 파일 만들기            pa_practice · /Shared Documents/보고서 · 정기점검_<대상월>_HGD.html
 ```
 
 ---

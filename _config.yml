@@ -23,6 +23,11 @@ aux_links:
   "GitHub":
     - "https://github.com/JM-2ktech/pa_lab"
 
+# 교육 회차마다 바뀌는 값 — 본문은 {{ site.pa.<키> }} 로 참조한다. 회차가 바뀌면 여기만 고친다.
+# ⚠️ 이 파일은 공개 저장소에 올라간다.
+pa:
+  sharepoint_site: "https://2ktech.sharepoint.com/sites/pa_practice"
+
 nav_sort: order
 color_scheme: light
 

@@ -20,7 +20,7 @@ Cloud Flow 기반 DPA(1일차)와 Power Automate Desktop 기반 RPA(2일차)를 
 ## 준비물
 
 - Microsoft 365 계정과 Power Platform 환경(Environment Maker)
-- SharePoint 팀 사이트 하나 — 수강생 전원이 구성원
+- SharePoint 커뮤니케이션 사이트 하나 — 수강생 전원이 구성원(편집 권한)
 - 2일차: Power Automate Desktop과 Edge 확장
 
 ## 로컬에서 보기

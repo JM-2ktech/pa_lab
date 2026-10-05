@@ -66,20 +66,20 @@ nav_order: 2
 ## 준비
 
 - 강사가 배부한 교육용 M365 계정으로 로그인합니다. 브라우저는 **Microsoft Edge**를 씁니다.
-- 강사가 안내한 SharePoint 사이트 `PA실습` 의 주소를 확인합니다. 본문에서는 `https://<테넌트>.sharepoint.com/sites/PA실습` 으로 적습니다.
+- 실습 SharePoint 사이트는 `pa_practice` 하나입니다. 수강생 전원이 같은 사이트를 씁니다.
 - 교육생 전원이 같은 사이트와 환경을 씁니다. 이름이 있는 객체(목록·흐름)에는 끝에 본인 이니셜을 붙입니다.
 
 ---
 
 ## 단계 ① 목록 만들기
 
-1. Edge에서 `PA실습` 사이트를 엽니다. `<테넌트>` 는 강사가 안내한 값으로 바꿉니다.
+1. Edge에서 아래 주소로 `pa_practice` 사이트를 엽니다.
 
     ```
-    https://<테넌트>.sharepoint.com/sites/PA실습
+    {{ site.pa.sharepoint_site }}
     ```
 
-    ![촬영: PA실습 사이트 홈 화면](../assets/lab1/lab1-01.png)
+    ![촬영: pa_practice 사이트 홈 화면](../assets/lab1/lab1-01.png)
 
 2. 사이트 홈에서 **+ 새로 만들기**를 누르고 **목록**을 고릅니다.
 
@@ -169,9 +169,9 @@ nav_order: 2
 
     ![촬영: 작업 추가 창에서 SharePoint 항목 만들기를 찾은 화면](../assets/lab1/lab1-16.png)
 
-17. **사이트 주소** 드롭다운에서 `PA실습` 을 고릅니다. 목록에 없으면 맨 아래 **사용자 지정 값 입력**을 고르고 1번의 주소를 붙여넣습니다.
+17. **사이트 주소** 드롭다운에서 `pa_practice` 을 고릅니다. 목록에 없으면 맨 아래 **사용자 지정 값 입력**을 고르고 1번의 주소를 붙여넣습니다.
 
-    ![촬영: 사이트 주소 드롭다운의 PA실습](../assets/lab1/lab1-17.png)
+    ![촬영: 사이트 주소 드롭다운의 pa_practice](../assets/lab1/lab1-17.png)
 
 18. **목록 이름** 드롭다운에서 4번에서 만든 `업무요청_HGD` 를 고릅니다.
 
@@ -351,7 +351,7 @@ nav_order: 2
 
     | 칸 | 값 |
     |---|---|
-    | 사이트 주소 | `PA실습` |
+    | 사이트 주소 | `pa_practice` |
     | 목록 이름 | `업무요청_HGD` |
 
     ![촬영: 사이트 주소와 목록 이름을 맞춘 항목 가져오기](../assets/lab1/lab1-44.png)
@@ -443,7 +443,7 @@ nav_order: 2
 
 ```
 흐름을 수동으로 트리거  (입력: 제목 · 긴급 · 마감일)
-├─ 항목 만들기  PA실습 · 업무요청_HGD
+├─ 항목 만들기  pa_practice · 업무요청_HGD
 │    제목 = 제목 · 요청자 = 사용자 이름 · 긴급 = 긴급 · 마감일 = 마감일
 └─ 조건  긴급 is equal to true
    ├─ 참:   채팅 또는 채널에서 메시지 게시  흐름 봇 · 흐름 봇과 채팅 · 본인
@@ -455,7 +455,7 @@ nav_order: 2
 ```
 되풀이  (1일 · (UTC+09:00) 서울)
 ├─ 작성  formatDateTime(convertFromUtc(utcNow(), 'Korea Standard Time'), 'yyyy-MM-dd')
-├─ 항목 가져오기  PA실습 · 업무요청_HGD
+├─ 항목 가져오기  pa_practice · 업무요청_HGD
 ├─ 배열 필터링  원본 = value · 마감일 is less than or equal to 출력(작성)
 └─ 이메일 보내기(V2)  받는 사람 = 본인 · 제목 = 마감 알림
      본문 = 문구 + length(body('배열_필터링')) + 건
