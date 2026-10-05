@@ -28,8 +28,8 @@ nav_order: 4
          승인 흐름 자습서 한국어판도 조건 오른쪽에 「승인」을 입력하라고 적는다 — 실측으로 어느 쪽인지 닫는다(20번)
        - 「채팅 또는 채널에서 메시지 게시」 — 커넥터 참조 한국어판은 「채팅 또는 채널에 메시지 게시」, 칸 이름은 「다음으로 게시」·「다음에서 게시」다.
          선택지 글자(Flow bot · Flow bot과 채팅)와 Teams에서 보낸 이 표시(Flow bot 인지 Workflows 인지)
-       - 「이메일 보내기(V2)」 칸 이름 받는 사람 · 제목 · 본문(커넥터 참조 한국어판은 기계 번역이라 「에게 · 주제 · 몸」)
-       - False 갈래의 두 번째 메일 카드 기본 이름(`이메일 보내기(V2) 1` 로 가정)
+       - 「메일 보내기(V2)」 칸 이름 받는 사람 · 제목 · 본문(커넥터 참조 한국어판은 기계 번역이라 「에게 · 주제 · 몸」)
+       - False 갈래의 두 번째 메일 카드 기본 이름(`메일 보내기(V2) 1` 로 가정)
        - 51번 재실행 때 「파일 만들기」가 같은 이름 파일을 덮어쓰는가, 실패하는가. 커넥터 참조의 파일 만들기에는 덮어쓰기 매개 변수가 없다
        - Teams 웹에서 승인 앱 위치(왼쪽 앱 막대 · ⋯ 더 보기) · 받음 탭 이름 · 승인/거부 단추와 확인 단추 이름
        - 항목 링크(조직 범위 공유 링크)로 .html 을 열 때 브라우저에 열리는가, 내려받아지는가(46번)
@@ -189,9 +189,9 @@ nav_order: 4
 
 ## 단계 ④ 승인 — 메일
 
-22. **True** 갈래의 **+**를 누르고 `이메일 보내기` 를 검색해 **Office 365 Outlook › 이메일 보내기(V2)**를 고릅니다. 연결을 묻는 창이 뜨면 교육 계정으로 로그인합니다.
+22. **True** 갈래의 **+**를 누르고 `이메일 보내기` 를 검색해 **Office 365 Outlook › 메일 보내기(V2)**를 고릅니다. 연결을 묻는 창이 뜨면 교육 계정으로 로그인합니다.
 
-    ![촬영: True 갈래에 추가하는 Office 365 Outlook › 이메일 보내기(V2)](../assets/lab3/lab3-22.png)
+    ![촬영: True 갈래에 추가하는 Office 365 Outlook › 메일 보내기(V2)](../assets/lab3/lab3-22.png)
 
 23. **받는 사람**에 본인 교육 계정 주소를 입력합니다. 운영에서는 보고서를 받을 부서 주소가 들어갈 자리입니다.
 
@@ -265,9 +265,9 @@ nav_order: 4
 
 ## 단계 ⑥ 반려 — 의견 회신
 
-35. **False** 갈래의 **+**를 누르고 **Office 365 Outlook › 이메일 보내기(V2)**를 고릅니다.
+35. **False** 갈래의 **+**를 누르고 **Office 365 Outlook › 메일 보내기(V2)**를 고릅니다.
 
-    ![촬영: False 갈래에 추가하는 이메일 보내기(V2)](../assets/lab3/lab3-35.png)
+    ![촬영: False 갈래에 추가하는 메일 보내기(V2)](../assets/lab3/lab3-35.png)
 
 36. **받는 사람**에 본인 교육 계정 주소를 입력합니다. 운영에서는 보고서 작성자 주소가 들어갈 자리입니다.
 
@@ -448,10 +448,10 @@ Lab 2 흐름의 **파일 만들기** 아래에 공유 링크 · 승인 · 조건
 ├─ 승인 시작 및 대기      승인/거부 - 첫 번째 응답자 · 할당 대상 = 본인 · 항목 링크 = 링크 공유
 └─ 조건                   결과 같음 Approve
    ├─ True
-   │  ├─ 이메일 보내기(V2)                  [배포] · 받는 사람 = 본인 · 대상월·건수·링크
+   │  ├─ 메일 보내기(V2)                  [배포] · 받는 사람 = 본인 · 대상월·건수·링크
    │  └─ 채팅 또는 채널에서 메시지 게시      Flow bot · Flow bot과 채팅 · 받는 사람 = 본인
    └─ False
-      └─ 이메일 보내기(V2) 1                [반려] · 받는 사람 = 본인 · 반려 의견 식
+      └─ 메일 보내기(V2) 1                [반려] · 받는 사람 = 본인 · 반려 의견 식
 ```
 
 ---
@@ -467,7 +467,7 @@ Lab 2 흐름의 **파일 만들기** 아래에 공유 링크 · 승인 · 조건
 [^createlink]: **Create a sharing link for a DriveItem** — Microsoft Learn(Microsoft Graph). <https://learn.microsoft.com/graph/api/driveitem-createlink?view=graph-rest-1.0> (2026-10-02 확인). 링크 유형 view(읽기 전용)와 범위 organization(조직에 로그인한 사람)의 뜻.
 [^approvals]: **표준 승인** — Microsoft Learn 커넥터 참조. <https://learn.microsoft.com/ko-kr/connectors/approvals/> (2026-10-02 확인). 승인 시작 및 대기 · 세부 정보의 Markdown 지원 · 할당 대상 형식 · 응답 값의 대소문자 구분 · responses.comments 출력.
 [^modern]: **Power Automate를 사용하여 승인 워크플로 만들기 및 테스트** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/modern-approvals> (2026-10-02 확인). 새 디자이너에서 승인 작업의 승인 유형·제목·할당 대상·세부 정보를 채우는 순서와, 결과로 조건을 걸어 갈래마다 메일을 보내는 구성.
-[^outlook]: **Office 365 Outlook** — Microsoft Learn 커넥터 참조. <https://learn.microsoft.com/ko-kr/connectors/office365/> (2026-10-02 확인). 이메일 보내기(V2)의 받는 사람·제목·본문(HTML) 매개 변수.
+[^outlook]: **Office 365 Outlook** — Microsoft Learn 커넥터 참조. <https://learn.microsoft.com/ko-kr/connectors/office365/> (2026-10-02 확인). 메일 보내기(V2)의 받는 사람·제목·본문(HTML) 매개 변수.
 [^teams]: **Microsoft Teams** — Microsoft Learn 커넥터 참조. <https://learn.microsoft.com/ko-kr/connectors/teams/> (2026-10-02 확인). 채팅 또는 채널에 메시지 게시의 게시자·게시 위치 매개 변수와 Flow bot 게시자의 제한.
 [^designer]: **클라우드 흐름 디자이너 살펴보기** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/flows-designer> (2026-10-02 확인). 번개 아이콘(동적 콘텐츠)과 fx(식) · 저장 · 테스트 › 수동.
 [^functions]: **Reference guide to functions in expressions for workflows in Azure Logic Apps and Power Automate** — Microsoft Learn. <https://learn.microsoft.com/azure/logic-apps/expression-functions-reference> (2026-10-02 확인). first · outputs 와 ?[] 연산자.
