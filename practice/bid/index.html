@@ -86,6 +86,8 @@
     $('pageInfo').textContent = rows.length ? page + ' / ' + pages : '0 / 0';
     $('btnPrev').disabled = page <= 1;
     $('btnNext').disabled = page >= pages;
+    // 마지막 쪽에서는 다음 단추를 숨긴다 — PAD 페이지 선택기가 disabled 단추를 끝없이 누르는 것을 막는다(2026-10-05 실측)
+    $('btnNext').style.display = page >= pages ? 'none' : '';
   }
 
   $('btnSearch').addEventListener('click', run);
