@@ -56,6 +56,10 @@ nav_order: 5
 - 실습 파일을 PC에 받습니다. [PA실습.zip 다운로드](../assets/download/PA실습.zip)
 - 받은 파일을 `C:\` 에 풉니다. `C:\PA실습\` 폴더 안에 `거래처목록.xlsx` 와 `정리대상` 폴더가 보이면 됩니다.
 - Power Automate Desktop(이하 PAD)이 설치되어 있고, 교육용 계정으로 로그인되어 있어야 합니다. 「PAD 개요」 시간에 확인한 상태 그대로입니다.
+- PAD가 없으면 설치합니다.
+  - [PAD 설치 파일 받기](https://go.microsoft.com/fwlink/?linkid=2102613){:target="_blank"} — `Setup.Microsoft.PowerAutomate.exe` 를 받아 실행합니다. PC 관리자 권한이 필요합니다.
+  - 관리자 권한이 없으면 Microsoft Store 판을 설치합니다. 경로는 [Power Automate 설치](https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/install){:target="_blank"} 문서에 있습니다. 두 판을 함께 설치할 수는 없습니다.[^install]
+  - Lab 5에서 쓰는 [Edge 확장 Microsoft Power Automate](https://microsoftedge.microsoft.com/addons/detail/microsoft-power-automate/kagpabjoboikccfdghpdlaaopmgpgfdc){:target="_blank"}도 함께 설치합니다. 설치 마지막 화면에서 확장 설치를 건너뛰었을 때만 해당합니다.[^ext]
 - ⑤ 파일과 폴더를 처음부터 다시 하려면 `C:\PA실습\` 을 지우고 압축을 다시 풉니다. 한 번 실행하면 pdf가 `정리완료` 로 옮겨져 옮길 파일이 남지 않습니다.
 
 ---
@@ -494,8 +498,10 @@ nav_order: 5
 이 랩은 아래를 토대로 만들었습니다. 제품 화면과 동작은 실측이고, 문헌은 항목마다 확인일을 적었습니다. 제품이 바뀌면 문헌 쪽이 먼저 낡습니다.
 
 - **실측**: 실측 전
-- **문헌**: 콘솔과 새 흐름[^start] · 흐름 디자이너[^designer] · 변수 작업[^variables] · 변수 데이터 형식[^datatypes] · 메시지 상자 작업[^display] · 조건부 작업[^conditionals] · 루프 작업[^loops] · 폴더 작업[^folder] · 파일 작업[^file] · Excel 작업[^excel]
+- **문헌**: PAD 설치[^install] · 브라우저 확장 설치[^ext] · 콘솔과 새 흐름[^start] · 흐름 디자이너[^designer] · 변수 작업[^variables] · 변수 데이터 형식[^datatypes] · 메시지 상자 작업[^display] · 조건부 작업[^conditionals] · 루프 작업[^loops] · 폴더 작업[^folder] · 파일 작업[^file] · Excel 작업[^excel]
 
+[^install]: **Power Automate 설치** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/install> (2026-10-05 확인). MSI 설치 파일(관리자 권한 필요)과 Microsoft Store 판(권한 불필요)의 차이 · 두 판 동시 설치 불가 · 설치 파일 직접 링크 go.microsoft.com/fwlink/?linkid=2102613.
+[^ext]: **Install Power Automate browser extensions** — Microsoft Learn. <https://learn.microsoft.com/power-automate/desktop-flows/install-browser-extensions> (2026-10-05 확인). PAD v2.27 이상용 Edge 확장 링크 · 설치 마지막 화면의 확장 설치 안내.
 [^start]: **회사 또는 학교 계정으로 시작하기** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/getting-started-freeorg> (2026-10-02 확인). 콘솔의 새 흐름 단추 · 흐름 이름 입력 후 만들기 · 디자이너의 실행과 저장.
 [^designer]: **흐름 디자이너** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/flow-designer> (2026-10-02 확인). 작업 창 · 작업 영역 · 변수 창이라는 영역 이름.
 [^variables]: **변수 작업** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/actions-reference/variables> (2026-10-02 확인). 작업 이름 변수 설정 · 새 목록 만들기 · 목록에 항목 추가. 목록에 항목을 넣으려면 먼저 목록 변수가 있어야 한다는 것.
