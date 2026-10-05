@@ -42,7 +42,7 @@ nav_order: 2
            **사용자 이름(인코딩됨)** 은 base64 그대로 `6rWQ7Jyh`(「교육」)가 들어간다. 제작자 결정으로 **사용자 이메일**로 바꿨다.
            두 출력을 설명한 Learn 문서는 찾지 못했다 — 헤더로 넘어오며 깨진다는 것은 추정이다.
            디코딩은 `base64ToString()` (문서상 `decodeBase64()` 는 deprecated). 디자이너가 base64 함수를 숨길 수 있다는 공식 주의가 있다[^expr]
-           20~22번은 사용자 이메일로 다시 찍었다(2026-10-05). 39번은 ?? 컷이라 아직 붙이지 않았다
+           20~22 · 39번은 사용자 이메일로 다시 찍었다(2026-10-05)
          · ✔ 34~38번 실측. Teams 흐름 봇 메시지의 보낸 사람은 **워크플로**. 실행 화면에서 디자이너로는 **편집**. 26번에서 생긴 빈 조건 줄은 실행에 영향 없음
          · ✔ 16~19번 실측(2026-10-05). 목록을 고르면 고급 매개 변수 1/6 · 긴급만 보인다. 제목도 필수로 나오지 않아 드롭다운에서 제목·요청자·마감일을 체크한다.
            동적 콘텐츠는 트리거 출력 일부만 보여 **더 보기**를 눌러야 제목이 나온다. 초안 20번(모두 표시)을 19번에 합치고 20~22번을 요청자 · 긴급 · 마감일로 나눴다
@@ -58,7 +58,12 @@ nav_order: 2
          · 테스트 창의 **흐름 실행** · **계속** · **완료** 와 세부 정보 페이지의 **28일 실행 기록** (34·35·40번)
          · ✔ 41·42번 실측(2026-10-05). 창 제목 **예약된 클라우드 흐름 빌드**, 칸 **시작 · 시간 · 반복 주기**.
            트리거 카드 이름은 한국어 화면에서도 **Recurrence**, 구성 창 묶음 제목만 **되풀이**. 표준 시간대는 고급 매개 변수가 아니라 바로 보인다
-         · 39번 — 요청자 ?? 컷(14:44)만 있다. ?? 항목을 지우고 사용자 이메일로 다시 찍어야 한다
+         · ✔ 42번 시각 · 분을 비워 둬도 돈다(제작자 질문, 2026-10-05 문헌 확인)[^recurrence]
+           - 일정(이 시간에는 · 이 분에)이 없으면 시작 시간이 첫 실행이고, 이후는 직전 실행 시각 기준으로 계산한다. 그래서 몇 분씩 밀릴 수 있다
+           - 시작 시간이 과거면 지난 회차는 버리고 다음 미래 회차부터 돈다. 41번에 만든 흐름(시작 10:00, 만든 시각 15:02)은 다음 날 10:00 에 처음 돈다
+           - 만들기 창이 채운 시작 시간은 끝에 Z 가 붙는다(2026-10-05T01:00:00.000Z). 문서상 Z 가 있으면 표준 시간대 값은 무시된다.
+             01:00Z 가 한국 10:00 이므로 결과는 같다. 즉 42번의 서울 선택은 지금 값으로는 동작을 바꾸지 않는다
+           - 문서는 Azure Logic Apps 것이다. 클라우드 흐름의 Recurrence 가 같은 엔진이라 적용된다고 본다(Power Automate 쪽 문서에는 이 수준의 설명이 없다)
          · 배열 필터링의 원본 칸 이름 — ko-kr data-operations 문서의 조인 절은 From 을 **보낸 사람** 으로 옮겼다 (45번)
        - 동작
          · 26번 `true` 를 fx 없이 입력하면 문자열 비교가 되어 늘 False 로 가는지. 새 디자이너에서 그대로 재현되는지
@@ -487,7 +492,7 @@ nav_order: 2
 
     **완료 기준**: 항목이 두 건이고, 두 건 모두 `요청자` 에 `edu@2ktech.co.kr` 이 들어 있다. `긴급` 은 각각 예 · 아니요다.
 
-    ![촬영: 두 항목이 들어간 업무요청_HGD 목록](../assets/lab1/lab1-39.png)
+    ![요청자에 edu@2ktech.co.kr 이 들어간 두 항목 — 프린터 토너 교체(긴급) · 회의실 예약 변경](../assets/lab1/lab1-39.png)
 
 40. 디자이너 왼쪽 위 **←**(뒤로)를 눌러 흐름 세부 정보 페이지로 갑니다. **28일 실행 기록**을 확인합니다.
 
@@ -650,7 +655,7 @@ Recurrence  (1일 · (UTC+09:00) 서울)
 이 랩은 아래를 토대로 만들었습니다. 제품 화면과 동작은 실측이고, 문헌은 항목마다 확인일을 적었습니다. 제품이 바뀌면 문헌 쪽이 먼저 낡습니다.
 
 - **실측**: 실측 전
-- **문헌**: 클라우드 흐름 디자이너[^designer] · 클라우드 흐름 시작하기[^getstarted] · 일정에 따라 흐름 실행[^schedule] · 날짜 및 시간 값 형식 지정[^datetime] · 조건 추가[^condition] · Teams 메시지 보내기[^teams] · 데이터 작업[^dataops] · 식 함수 참조[^functions] · 식 함수 참조[^expr]
+- **문헌**: 클라우드 흐름 디자이너[^designer] · 클라우드 흐름 시작하기[^getstarted] · 일정에 따라 흐름 실행[^schedule] · 날짜 및 시간 값 형식 지정[^datetime] · 조건 추가[^condition] · Teams 메시지 보내기[^teams] · 데이터 작업[^dataops] · 식 함수 참조[^functions] · 식 함수 참조[^expr] · Recurrence 트리거 동작[^recurrence]
 
 [^designer]: **클라우드 흐름 디자이너 살펴보기** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/flows-designer> (2026-10-02 확인). 구성 창, 번개(동적 콘텐츠)·*fx*(식) 단추, 저장 후 **테스트** › **수동** 절차, 작업 추가 창의 기본 제공 도구 구분.
 
@@ -668,3 +673,4 @@ Recurrence  (1일 · (UTC+09:00) 서울)
 
 [^functions]: **Reference guide to functions in expressions for workflows in Azure Logic Apps and Power Automate** — Microsoft Learn. <https://learn.microsoft.com/azure/logic-apps/expression-functions-reference> (2026-10-02 확인). `convertFromUtc` 의 매개 변수와 시간대 이름(Windows 기본 표준 시간대 이름).
 [^expr]: **Reference guide to functions in expressions** — Microsoft Learn. <https://learn.microsoft.com/azure/logic-apps/expression-functions-reference> (2026-10-05 확인). `base64ToString()` 과 `decodeBase64()` 사용 중단, 디자이너의 base64 함수 표시 주의.
+[^recurrence]: **Schedules for recurring workflow triggers** · **Recurrence trigger** — Microsoft Learn (Azure Logic Apps). <https://learn.microsoft.com/azure/logic-apps/concepts-schedule-automated-recurring-tasks-workflows> · <https://learn.microsoft.com/azure/connectors/connectors-native-recurrence> (2026-10-05 확인). 시작 시간 · 일정 유무에 따른 첫 실행과 이후 실행, 시작 시간의 Z 와 표준 시간대.
