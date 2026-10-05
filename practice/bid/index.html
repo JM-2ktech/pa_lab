@@ -53,20 +53,20 @@
   var fmt = function (n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
 
-  function run() {
-    var kw = $('keyword').value.trim().toLowerCase(), cat = $('category').value;
-    rows = window.BIDS.filter(function (b) {
-      return (!kw || b.title.toLowerCase().indexOf(kw) >= 0) && (!cat || b.cat === cat);
-    });
-    page = 1; render();
+  // 검색 · 쪽 넘김은 주소(?q · cat · page)를 바꿔 페이지를 새로 연다(2026-10-05).
+  // 쪽을 화면 안에서만 바꾸면 PAD 페이지 선택기가 쪽 이동을 알아채지 못하고 다음 단추를 계속 누른다(Lab 5 28번 실측).
+  function go(p) {
     var q = new URLSearchParams();
-    if (kw) q.set('q', $('keyword').value.trim());
+    var kw = $('keyword').value.trim(), cat = $('category').value;
+    if (kw) q.set('q', kw);
     if (cat) q.set('cat', cat);
-    history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : ''));
+    if (p > 1) q.set('page', p);
+    location.href = location.pathname + (q.toString() ? '?' + q : '');
   }
 
   function render() {
     var pages = Math.max(1, Math.ceil(rows.length / PAGE));
+    if (page > pages) page = pages;
     var body = $('resultBody'), html = '';
     if (!rows.length) {
       html = '<tr class="empty"><td colspan="8">검색 결과가 없습니다.</td></tr>';
@@ -86,21 +86,26 @@
     $('pageInfo').textContent = rows.length ? page + ' / ' + pages : '0 / 0';
     $('btnPrev').disabled = page <= 1;
     $('btnNext').disabled = page >= pages;
-    // 마지막 쪽에서는 다음 단추를 숨긴다 — PAD 페이지 선택기가 disabled 단추를 끝없이 누르는 것을 막는다(2026-10-05 실측)
+    // 마지막 쪽에서는 다음 단추를 숨긴다 — PAD 페이지 선택기가 여기서 멈춘다
     $('btnNext').style.display = page >= pages ? 'none' : '';
   }
 
-  $('btnSearch').addEventListener('click', run);
-  $('keyword').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); run(); } });
-  $('btnPrev').addEventListener('click', function () { if (page > 1) { page--; render(); } });
+  $('btnSearch').addEventListener('click', function () { go(1); });
+  $('keyword').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); go(1); } });
+  $('btnPrev').addEventListener('click', function () { if (page > 1) go(page - 1); });
   $('btnNext').addEventListener('click', function () {
-    if (page < Math.ceil(rows.length / PAGE)) { page++; render(); }
+    if (page < Math.ceil(rows.length / PAGE)) go(page + 1);
   });
 
   var q = new URLSearchParams(location.search);
   $('keyword').value = q.get('q') || '';
   $('category').value = q.get('cat') || '';
-  run();
+  var kw = $('keyword').value.trim().toLowerCase(), cat = $('category').value;
+  rows = window.BIDS.filter(function (b) {
+    return (!kw || b.title.toLowerCase().indexOf(kw) >= 0) && (!cat || b.cat === cat);
+  });
+  page = Math.max(1, parseInt(q.get('page'), 10) || 1);
+  render();
 })();
 </script>
 </body>
