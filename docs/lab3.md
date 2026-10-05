@@ -20,10 +20,12 @@ nav_order: 4
      ★ 반려 의견 식은 설계 원문 그대로다(40번). 「응답 의견」 동적 콘텐츠를 고르면 디자이너가 For each 로 감싸므로 first()로 첫 응답만 꺼낸다.
        의견을 비워 거부하면 「반려 의견:」 뒤가 빈칸이다. cs_lab_adv lab5 처럼 coalesce·trim 폴백을 둘지는 실측 후 판단한다.
      ⚠️ 실측할 것
-       - 「파일 또는 폴더에 대한 공유 링크 만들기」 칸 이름(라이브러리 이름 · 항목 ID · 링크 유형 · 링크 범위)과 선택지 글자(보기 전용 · 조직)
+       - ✔ 「파일 또는 폴더에 대한 공유 링크 만들기」 칸 이름은 라이브러리 이름 · 항목 ID · 링크 유형 · 링크 범위. 선택지는 영문(View only · People in your organization)
        - 공유 링크 출력의 동적 콘텐츠 이름 — 커넥터 참조 한국어판은 webUrl 을 「링크 공유」로 적는다(15·27·33·39번)
-       - ✔ 「승인 시작 및 대기」가 두 개 뜬다(2026-10-05 제작자 실측). 커넥터 참조 영문판에서 하나는 [DEPRECATED](approvalSubscribeV2)인데 한국어 이름에서 꼬리표가 빠졌다.
-        8번은 코드 보기의 operationId 로 가리게 했다. ⚠️ 코드 보기에 operationId 가 그 이름으로 보이는지는 촬영 때 확인. 기본 카드 이름이 `승인 시작 및 대기` 인가(9번)
+       - ✔ 「승인 시작 및 대기」가 두 개 뜬다(2026-10-05 제작자 실측). 둘째는 사용 중단 버전이 아니라 텍스트 승인
+        (Start and wait for an approval of text · StartAndWaitForATextSuggestionApproval)이고, 한국어 이름에서 「텍스트」가 빠졌다.
+        구별은 첫 칸이 「승인 형식」인지(제작자 방법), 애매하면 코드 보기 operationId. 둘째로 추가한 카드는 이름에 「 1」이 붙는다
+      - ✔ 1~9번 실측. 공유 링크의 링크 유형 · 범위 선택지가 영문(View only · People in your organization). 항목 ID 동적 콘텐츠 이름은 body/ItemId. 표준 승인 연결은 「새로 만들기」로 로그인 없이 만들어진다
        - 승인 유형 글자 「승인/거부 - 첫 번째 응답자」(설계 §5) — cs_lab_adv lab5 는 「첫 번째로 응답」으로 적었다
        - ✔ 결과 값 `Approve` / `Reject` — 커넥터 참조 영문판 Known issues 에 「Valid responses … are "Approve" and "Reject". These responses are case-sensitive.」(2026-10-05 확인). 한국어판의 「승인」「거부」는 번역이다
          승인 흐름 자습서 한국어판도 조건 오른쪽에 「승인」을 입력하라고 적는다 — 실측으로 어느 쪽인지 닫는다(20번)
@@ -58,56 +60,66 @@ nav_order: 4
 
 ## 단계 ① 공유 링크
 
-1. [Power Automate — {{ site.pa.environment }}]({{ site.pa.powerautomate_url }}){:target="_blank"}를 엽니다. 왼쪽 메뉴 **내 흐름**에서 `월간 점검보고서_HGD` 를 열고 **편집**을 누릅니다.
+1. [Power Automate — {{ site.pa.environment }}]({{ site.pa.powerautomate_url }}){:target="_blank"}를 엽니다. 왼쪽 메뉴 **내 흐름**에서 `월간 점검보고서_HGD` 를 엽니다.
 
-    ![촬영: 내 흐름 목록의 월간 점검보고서_HGD와 편집 단추](../assets/lab3/lab3-01.png)
+    ![내 흐름 목록의 월간 점검보고서_EDU](../assets/lab3/lab3-01.png)
 
-2. 맨 아래 **파일 만들기** 아래 **+**를 누르고 `공유 링크` 를 검색해 **SharePoint › 파일 또는 폴더에 대한 공유 링크 만들기**를 고릅니다.
+    흐름 세부 정보 페이지 위쪽의 **편집**을 누릅니다.
 
-    ![촬영: 작업 추가 검색 결과의 SharePoint › 파일 또는 폴더에 대한 공유 링크 만들기](../assets/lab3/lab3-02.png)
+    ![흐름 세부 정보 페이지의 편집 단추](../assets/lab3/lab3-01b.png)
 
-3. **사이트 주소** 드롭다운에서 `pa_practice` 을 고릅니다.
+2. 맨 아래 **파일 만들기** 아래 **+** › **작업 추가**에서 `공유 링크` 를 검색해 **SharePoint** 아래 **파일 또는 폴더에 대한 공유 링크 만들기**를 고릅니다. 위쪽 **비즈니스용 OneDrive**의 공유 링크 작업이 아닙니다.
 
-    ![촬영: 사이트 주소 = pa_practice](../assets/lab3/lab3-03.png)
+    ![작업 추가 창 — 검색어 공유 링크, SharePoint › 파일 또는 폴더에 대한 공유 링크 만들기](../assets/lab3/lab3-02.png)
+
+3. **사이트 주소** 드롭다운에서 `Power Automate 실습 - https://2ktech.sharepoint.com/sites/pa_practice` 를 고릅니다.
+
+    ![사이트 주소 드롭다운의 Power Automate 실습](../assets/lab3/lab3-03.png)
 
 4. **라이브러리 이름**에서 **문서**를 고릅니다.
 
-    ![촬영: 라이브러리 이름 = 문서](../assets/lab3/lab3-04.png)
+    ![라이브러리 이름 드롭다운의 문서](../assets/lab3/lab3-04.png)
 
-5. **항목 ID** 칸을 누르고 번개 아이콘(동적 콘텐츠 삽입)에서 **파일 만들기 › ItemId**를 고릅니다.
+5. **항목 ID** 칸을 누르고 번개 단추에서 **파일 만들기** 아래 **body/ItemId**를 고릅니다. Lab 2에서 만든 보고서 파일의 라이브러리 안 번호입니다.
 
-    Lab 2에서 만든 보고서 파일의 라이브러리 안 번호입니다.
+    ![항목 ID 칸의 동적 콘텐츠 — 파일 만들기 › body/ItemId](../assets/lab3/lab3-05.png)
 
-    ![촬영: 항목 ID = 파일 만들기 ItemId 칩](../assets/lab3/lab3-05.png)
+6. **링크 유형**에서 **View only**를 고릅니다. 선택지가 영문으로 보입니다.
 
-6. **링크 유형**에서 **보기 전용**을 고릅니다.
+    ![링크 유형 드롭다운 — Review · View and edit · View only · View, but not download](../assets/lab3/lab3-06.png)
 
-    ![촬영: 링크 유형 드롭다운의 보기 전용](../assets/lab3/lab3-06.png)
+7. **링크 범위**에서 **People in your organization**을 고릅니다. 조직에 로그인한 사람이면 누구나 링크로 보고서를 볼 수 있습니다.
 
-7. **링크 범위**에서 **조직**을 고릅니다. 조직에 로그인한 사람이면 누구나 링크로 보고서를 볼 수 있습니다.
-
-    ![촬영: 링크 범위 드롭다운의 조직](../assets/lab3/lab3-07.png)
+    ![링크 범위 드롭다운의 People in your organization](../assets/lab3/lab3-07.png)
 
 ## 단계 ② 승인 요청
 
-8. 공유 링크 카드 아래 **+** › **작업 추가**에서 `표준 승인` 을 검색합니다. **표준 승인** 아래에 **승인 시작 및 대기**가 두 개 보입니다. 하나는 사용 중단된 이전 버전인데, 한국어 화면에서는 이름이 같아 구별되지 않습니다. 둘 중 하나를 고릅니다.
+8. 공유 링크 카드 아래 **+** › **작업 추가**에서 `표준 승인` 을 검색합니다. **표준 승인** 아래에 **승인 시작 및 대기**가 두 개 보입니다. 둘 중 하나를 고릅니다.
 
-    ![촬영: 작업 추가 창 — 표준 승인 아래 같은 이름의 승인 시작 및 대기 두 개](../assets/lab3/lab3-08.png)
+    ![작업 추가 창 — 표준 승인 아래 같은 이름의 승인 시작 및 대기 두 개](../assets/lab3/lab3-08.png)
 
-    추가한 카드의 **코드 보기** 탭을 엽니다. `operationId` 가 `StartAndWaitForAnApproval` 이면 맞습니다. `approvalSubscribeV2` 이면 사용 중단된 쪽이므로 카드를 삭제하고 다른 하나를 고릅니다.
+    **연결 만들기** 창이 뜨면 **새로 만들기**를 누릅니다. 표준 승인 연결은 로그인 창 없이 만들어집니다.
 
-    ![촬영: 코드 보기 탭의 operationId StartAndWaitForAnApproval](../assets/lab3/lab3-08b.png)
+    ![표준 승인 연결 만들기 창의 새로 만들기](../assets/lab3/lab3-08b.png)
 
-9. 구성 창 맨 위의 카드 이름이 아래와 같은지 확인합니다. 다르면 이 글자로 바꿉니다.
+9. 구성 창의 첫 칸이 **승인 형식**인지 확인합니다. 이 작업이 맞습니다. 카드 이름은 `승인 시작 및 대기` 그대로 둡니다.
 
-    ```
-    승인 시작 및 대기
-    ```
+    ![첫 칸이 승인 형식인 승인 시작 및 대기 구성 창](../assets/lab3/lab3-09.png)
+
+    두 작업은 한국어 화면에서 이름이 같습니다. 영문으로는 「Start and wait for an approval」과 「Start and wait for an approval **of text**」(텍스트 승인)입니다.
+    첫 칸이 **승인 형식**이 아니고 제목 · 제안 텍스트 칸이 바로 나오면 텍스트 승인입니다. 애매하면 **코드 보기** 탭의 `operationId` 로 가립니다.
+
+    | operationId | 작업 |
+    |---|---|
+    | `StartAndWaitForAnApproval` | 이 랩에서 쓰는 승인 시작 및 대기 |
+    | `StartAndWaitForATextSuggestionApproval` | 텍스트 승인 — 쓰지 않음 |
+
+    ![코드 보기 — operationId StartAndWaitForAnApproval](../assets/lab3/lab3-09b.png)
+
+    ![코드 보기 — operationId StartAndWaitForATextSuggestionApproval, 카드 이름 승인 시작 및 대기 1](../assets/lab3/lab3-09c.png)
 
     {: .warning }
-    **카드 이름을 바꾸지 않습니다.** 40번의 반려 의견 식이 `승인_시작_및_대기` 라는 이름(띄어쓰기는 밑줄)으로 이 카드를 찾습니다. 이름이 다르면 저장할 때 식 오류가 납니다.
-
-    ![촬영: 카드 이름 승인 시작 및 대기](../assets/lab3/lab3-09.png)
+    **텍스트 승인을 골랐으면 그 카드를 먼저 삭제하고 다른 하나를 추가합니다.** 카드가 둘인 상태에서 추가하면 새 카드 이름에 ` 1` 이 붙어, 40번의 반려 의견 식이 `승인_시작_및_대기` 라는 이름으로 카드를 찾지 못합니다.
 
 10. **승인 유형**에서 **승인/거부 - 첫 번째 응답자**를 고릅니다.
 
@@ -449,7 +461,7 @@ Recurrence                1 월 · 2026-11-01 09:00 · (UTC+09:00) 서울
 ├─ HTML 테이블 만들기      원본 선택 출력
 ├─ 보고서                 작성 · HTML 틀 + 대상월·건수·HTML 테이블 출력
 ├─ 파일 만들기            pa_practice · /Shared Documents/보고서 · 정기점검_<대상월>_HGD.html
-├─ 파일 또는 폴더에 대한 공유 링크 만들기    문서 · 항목 ID = ItemId · 보기 전용 · 조직
+├─ 파일 또는 폴더에 대한 공유 링크 만들기    문서 · 항목 ID = body/ItemId · View only · People in your organization
 ├─ 승인 시작 및 대기      승인/거부 - 첫 번째 응답자 · 할당 대상 = 본인 · 항목 링크 = 링크 공유
 └─ 조건                   결과 다음과 같음 Approve
    ├─ True
