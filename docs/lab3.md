@@ -28,7 +28,9 @@ nav_order: 4
       - 10~57번은 2026-10-05 Lab 1·2 실측(데이터 작업 · 컨트롤 경로, edu 검색, 흐름 봇 표기, 테스트 창, 워크플로 발신자)을 미리 반영했다. 촬영 때 다시 맞춘다
       - ✔ 42~49번 실측(2026-10-05, Teams 데스크톱). 활동 알림 → 승인 앱 받음 탭(상태 요청됨). 세부 정보 창의 항목 링크는 「첨부 파일」 아래.
         응답 입력칸 이름은 「설명」, 단추는 거부 · 승인이고 확인 단계가 없다. 항목 링크의 .html 은 SharePoint 미리 보기로 열린다.
-        Teams 메시지를 한 줄로 붙이면 요약 뒤에 「보고서:」와 URL 이 이어 붙어 읽기 어려워 32번을 세 줄로 바꿨다 — 32 · 33 · 49 재촬영.
+        Teams 메시지를 한 줄로 붙이면 요약 뒤에 「보고서:」와 URL 이 이어 붙고, URL 은 링크가 되지 않는다(Outlook 은 자동 링크).
+        메시지 칸 툴바에 코드 보기(</>) 토글이 있다(제작자 확인) — 32번을 HTML 붙여넣기로 바꿨다. 32 · 33 · 49 재촬영.
+        ⚠️ 코드 보기에서 번개 단추로 칩을 넣을 수 있는지, href 안의 칩이 링크로 나가는지는 재촬영 때 확인
         13번 세부 정보 문구의 「의견 칸」은 화면 이름(설명)과 다르다 — 제작자 판단 대기
       - ✔ 26~41번 실측(2026-10-05). Teams 작업 이름은 「채팅 또는 채널에서 메시지 게시」, 칸은 다음으로 게시 · 게시 위치 · Recipient · 메시지.
         게시 위치를 고르면 Recipient · 메시지 칸이 나타난다. False 갈래 메일 카드 이름은 `메일 보내기(V2) 1`(가정대로). 반려 의견 식은 fx 로 넣으면 `first(...)` 칩이 된다
@@ -281,19 +283,23 @@ nav_order: 4
 
     ![Recipient 칸에 edu 를 입력해 뜬 교육 계정](../assets/lab3/lab3-31.png)
 
-32. **메시지**에 아래를 붙여넣습니다.
+32. **메시지** 칸 툴바 오른쪽 끝의 **`</>`**(코드 보기)를 눌러 HTML 보기로 바꿉니다. 칸에 아래를 붙여넣습니다.
 
     ```
-    HGD 설비 정기점검 보고서 [대상월] 승인 완료
-    요약: [건수]
-    보고서: [링크]
+    <p>HGD 설비 정기점검 보고서 [대상월] 승인 완료<br>
+    요약: [건수]<br>
+    <a href='[링크]'>보고서 열기</a></p>
     ```
 
-    ![촬영: Recipient 교육 칩과 메시지에 붙여넣은 세 줄](../assets/lab3/lab3-32.png)
+    Teams 흐름 봇 메시지는 메일과 달리 URL 을 링크로 바꿔 주지 않습니다. 줄바꿈은 `<br>`, 링크는 `<a href>` 로 직접 적습니다.[^teamsfmt]
 
-33. 대괄호 세 곳을 26·27번과 같은 방법으로 **대상월 › 출력**, **건수 › 출력**, **공유 링크**로 바꿉니다.
+    ![촬영: 코드 보기로 바꾼 메시지 칸에 붙여넣은 HTML](../assets/lab3/lab3-32.png)
 
-    ![촬영: 세 줄 메시지의 출력 칩 두 개와 공유 링크 칩](../assets/lab3/lab3-33.png)
+33. 코드 보기 그대로 대괄호 세 곳을 26·27번과 같은 방법으로 **대상월 › 출력**, **건수 › 출력**, **공유 링크**로 바꿉니다. `[링크]` 는 따옴표 안의 대괄호만 선택합니다.
+
+    **완료 기준**: 코드 보기에 대괄호가 남지 않고, `href=` 뒤 작은따옴표 안에 공유 링크 칩이 있다.
+
+    ![촬영: 코드 보기의 출력 칩 두 개와 href 안의 공유 링크 칩](../assets/lab3/lab3-33.png)
 
 34. 위쪽 명령 모음의 **저장**을 누릅니다.
 
@@ -401,9 +407,9 @@ nav_order: 4
 
 49. Teams 채팅 목록에서 **워크플로**가 보낸 메시지를 엽니다. 흐름 봇 메시지는 보낸 사람이 **워크플로**로 보입니다(Lab 1 36번).
 
-    **완료 기준**: `HGD 설비 정기점검 보고서 2026-09 승인 완료` · `요약: 점검 32건 · 주의 3 · 이상 2` · 보고서 링크가 세 줄로 보인다.
+    **완료 기준**: `HGD 설비 정기점검 보고서 2026-09 승인 완료` · `요약: 점검 32건 · 주의 3 · 이상 2` · **보고서 열기** 세 줄이 보이고, 보고서 열기를 누르면 보고서가 열린다.
 
-    ![촬영: 워크플로 채팅에 온 세 줄 승인 완료 메시지](../assets/lab3/lab3-49.png)
+    ![촬영: 워크플로 채팅에 온 세 줄 승인 완료 메시지와 보고서 열기 링크](../assets/lab3/lab3-49.png)
 
 50. Power Automate 탭으로 돌아가 실행 결과를 확인합니다.
 
@@ -516,5 +522,6 @@ Recurrence                1 월 · 2026-11-01 09:00 · (UTC+09:00) 서울
 [^modern]: **Power Automate를 사용하여 승인 워크플로 만들기 및 테스트** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/modern-approvals> (2026-10-02 확인). 새 디자이너에서 승인 작업의 승인 유형·제목·할당 대상·세부 정보를 채우는 순서와, 결과로 조건을 걸어 갈래마다 메일을 보내는 구성.
 [^outlook]: **Office 365 Outlook** — Microsoft Learn 커넥터 참조. <https://learn.microsoft.com/ko-kr/connectors/office365/> (2026-10-02 확인). 메일 보내기(V2)의 받는 사람·제목·본문(HTML) 매개 변수.
 [^teams]: **Microsoft Teams** — Microsoft Learn 커넥터 참조. <https://learn.microsoft.com/ko-kr/connectors/teams/> (2026-10-02 확인). 채팅 또는 채널에 메시지 게시의 게시자·게시 위치 매개 변수와 흐름 봇 게시자의 제한.
+[^teamsfmt]: **Format agent messages** — Microsoft Learn. <https://learn.microsoft.com/microsoftteams/platform/bots/how-to/format-your-bot-messages> (2026-10-05 확인). Teams 가 봇 메시지에서 받는 HTML — `<br>` 줄바꿈 · `<a href>` 링크.
 [^designer]: **클라우드 흐름 디자이너 살펴보기** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/flows-designer> (2026-10-02 확인). 번개 아이콘(동적 콘텐츠)과 fx(식) · 저장 · 테스트 › 수동.
 [^functions]: **Reference guide to functions in expressions for workflows in Azure Logic Apps and Power Automate** — Microsoft Learn. <https://learn.microsoft.com/azure/logic-apps/expression-functions-reference> (2026-10-02 확인). first · outputs 와 ?[] 연산자.
