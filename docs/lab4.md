@@ -63,6 +63,9 @@ nav_order: 5
        - ✔ 31~33번. 폴더 만들기 칸 이름은 「안에 새 폴더 만들기」 · 「새 폴더 이름」, 칸 위 폴더 아이콘 → 「폴더 선택」 창.
          검색 결과에 SharePoint › 새 폴더 만들기도 뜬다. 변수 생성됨 NewFolder 를 정리완료폴더로 바꿔 39번 대상 폴더에 쓴다(제작자 결정 —
          주소를 두 번 적지 않고 만든 폴더 변수를 남겨 쓰는 형태). 변수 이름에 한글이 된다
+       - ✔ 54번 게시(제작자 지적 2026-10-05). PAD 버전 관리가 켜진 환경에서는 저장 = 초안, 게시 = 콘솔·클라우드에서 실행되는 버전.
+         게시 단추는 저장 바로 오른쪽. 미게시 흐름은 콘솔에서 아이콘에 금지 표시 · 실행/중지 불가. 디자이너가 열려 있으면 상태 「현재 편집 중」 · 편집 단추 꺼짐.
+         Lab 6 1번(콘솔에서 공고 조회_HGD 를 편집으로 연다)은 Lab 5 디자이너를 닫은 뒤라야 편집 단추가 켜진다 — Lab 5 · 6 촬영 때 확인
        - ✔ 42~53번. Launch Excel 의 화면 이름은 「Excel 시작」, 드롭다운 빈 문서 / 및 다음 문서 열기, 칸 문서 경로 · 인스턴스 표시 · 읽기 전용으로 열기.
          Excel 워크시트에서 읽기: Excel 인스턴스 · 검색(워크시트의 사용 가능한 모든 값) · 고급 › 범위의 첫 번째 행을 열 이름으로 사용.
          목록에 항목 추가 칸은 항목 추가 · 목록으로. Excel 닫기 칸 Excel 인스턴스 · Excel을 닫기 전(기본 문서 저장 안 함).
@@ -593,6 +596,18 @@ nav_order: 5
     **완료 기준**: `A 등급 거래처` 창에 한빛시청 · 누리개발원 · 가람교육청 · 다온공사 · 미르제약 다섯 곳이 보이고, 변수 창의 `AGradeList` 가 5개 항목이다.
 
     ![A 등급 거래처 창 — 한빛시청 · 누리개발원 · 가람교육청 · 다온공사 · 미르제약](../assets/lab4/lab4-53.png)
+
+54. 도구 모음에서 **저장** 바로 오른쪽의 **게시** 단추를 누릅니다. **저장**은 초안만 남깁니다. 게시한 버전이어야 콘솔이나 클라우드 흐름에서 실행됩니다.[^version]
+
+    ![도구 모음 — 저장 · 게시 · 실행 · 중지 · 다음 작업 실행](../assets/lab4/lab4-54.png)
+
+    게시하지 않은 흐름은 콘솔 흐름 목록에서 아이콘에 금지 표시가 붙고, 실행 · 중지 단추를 쓸 수 없습니다. 디자이너가 열려 있는 동안은 상태가 **현재 편집 중**이고 편집 단추도 꺼져 있습니다.
+
+    ![게시 전 — 아이콘의 금지 표시와 상태 현재 편집 중](../assets/lab4/lab4-54b.png)
+
+    **완료 기준**: 디자이너를 닫은 뒤 콘솔 흐름 목록에서 `PAD 기본_HGD` 아이콘에 금지 표시가 없다.
+
+    ![촬영: 게시 후 콘솔 흐름 목록 — 금지 표시 없는 PAD 기본 아이콘과 실행 단추](../assets/lab4/lab4-54c.png)
 {: start="42" }
 
 ---
@@ -607,11 +622,12 @@ nav_order: 5
 - ④ 반복 메시지가 1·2·3 세 번 뜬다 (27~29번)
 - ⑤ `C:\PA실습\정리완료` 에 pdf 3개가 있다 (33~41번)
 - ⑥ 메시지 창에 A 등급 거래처 5곳이 뜬다 (45~53번)
+- ⑦ 콘솔 흐름 목록에서 `PAD 기본_HGD` 에 금지 표시가 없다 — 게시됨 (54번)
 {: .checklist }
 
 **관찰**: 나오면 좋고, 안 나와도 실패가 아닙니다
 
-- ⑦ 실행 뒤 변수 창에서 `Files` 와 `ExcelData` 를 열어 내용을 볼 수 있다 (40·52번)
+- ⑧ 실행 뒤 변수 창에서 `Files` 와 `ExcelData` 를 열어 내용을 볼 수 있다 (40·52번)
 {: .checklist }
 
 ---
@@ -663,10 +679,11 @@ Main 에 15줄, 하위 흐름 `Basic` 에 11줄이 있습니다. 디자이너 �
 이 랩은 아래를 토대로 만들었습니다. 제품 화면과 동작은 실측이고, 문헌은 항목마다 확인일을 적었습니다. 제품이 바뀌면 문헌 쪽이 먼저 낡습니다.
 
 - **실측**: 2026-10-05 1~53번
-- **문헌**: PAD 설치[^install] · 브라우저 확장 설치[^ext] · 콘솔과 새 흐름[^start] · 흐름 디자이너[^designer] · 변수 작업[^variables] · 변수 데이터 형식[^datatypes] · 메시지 상자 작업[^display] · 조건부 작업[^conditionals] · 루프 작업[^loops] · 폴더 작업[^folder] · 파일 작업[^file] · Excel 작업[^excel]
+- **문헌**: PAD 설치[^install] · 버전 관리(저장과 게시)[^version] · 브라우저 확장 설치[^ext] · 콘솔과 새 흐름[^start] · 흐름 디자이너[^designer] · 변수 작업[^variables] · 변수 데이터 형식[^datatypes] · 메시지 상자 작업[^display] · 조건부 작업[^conditionals] · 루프 작업[^loops] · 폴더 작업[^folder] · 파일 작업[^file] · Excel 작업[^excel]
 
 [^install]: **Power Automate 설치** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/install> (2026-10-05 확인). MSI 설치 파일(관리자 권한 필요)과 Microsoft Store 판(권한 불필요)의 차이 · 두 판 동시 설치 불가 · 설치 파일 직접 링크 go.microsoft.com/fwlink/?linkid=2102613.
 [^ext]: **Install Power Automate browser extensions** — Microsoft Learn. <https://learn.microsoft.com/power-automate/desktop-flows/install-browser-extensions> (2026-10-05 확인). PAD v2.27 이상용 Edge 확장 링크 · 설치 마지막 화면의 확장 설치 안내.
+[^version]: **Version control in Power Automate for desktop** — Microsoft Learn. <https://learn.microsoft.com/power-automate/desktop-flows/version-control> (2026-10-05 확인). Save draft 는 최신 초안만 만들고, Publish 한 버전이 콘솔·클라우드에서 실행된다. 작업 영역에 켜진 작업이 하나도 없으면 Publish 가 꺼져 있다. v2.62(2025-11)부터, 2026-05 GA.
 [^start]: **회사 또는 학교 계정으로 시작하기** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/getting-started-freeorg> (2026-10-02 확인). 콘솔의 새 흐름 단추 · 흐름 이름 입력 후 만들기 · 디자이너의 실행과 저장.
 [^designer]: **흐름 디자이너** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/flow-designer> (2026-10-02 확인). 작업 창 · 작업 영역 · 변수 창이라는 영역 이름.
 [^variables]: **변수 작업** — Microsoft Learn. <https://learn.microsoft.com/ko-kr/power-automate/desktop-flows/actions-reference/variables> (2026-10-02 확인). 작업 이름 변수 설정 · 새 목록 만들기 · 목록에 항목 추가. 목록에 항목을 넣으려면 먼저 목록 변수가 있어야 한다는 것.
