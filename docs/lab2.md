@@ -86,7 +86,7 @@ nav_order: 3
 
     ![촬영: Power Automate 홈](../assets/lab2/lab2-05.png)
 
-6. 오른쪽 위 **환경**이 강사가 안내한 환경인지 확인합니다.
+6. 오른쪽 위 **환경**이 `{{ site.pa.environment }}` 인지 확인합니다.
 
     ![촬영: 오른쪽 위 환경 표시](../assets/lab2/lab2-06.png)
 

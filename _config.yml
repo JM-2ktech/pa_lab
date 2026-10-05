@@ -27,6 +27,7 @@ aux_links:
 # ⚠️ 이 파일은 공개 저장소에 올라간다.
 pa:
   sharepoint_site: "https://2ktech.sharepoint.com/sites/pa_practice"
+  environment: "edu261006"
 
 nav_sort: order
 color_scheme: light
