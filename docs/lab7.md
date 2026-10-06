@@ -68,6 +68,11 @@ nav_order: 8
 ## 준비
 
 - PX-ERP 실행 파일이 `C:\PA실습\PxErp\PxErp.exe` 에 있어야 합니다. 실습 SharePoint 의 [문서 › 실습자료 › PxErp.exe]({{ site.pa.sharepoint_site }}/Shared%20Documents/실습자료/PxErp.exe){:target="_blank"}를 받아 이 위치에 둡니다. 설치는 필요 없습니다.
+
+    Edge 다운로드 창에 「PxErp.exe은(는) 일반적으로 다운로드되지 않습니다」가 뜨면, 그 줄의 **⋯** 를 누르고 **유지**를 고릅니다. 서명하지 않은 실습용 앱이라 뜨는 경고입니다.
+
+    ![Edge 다운로드 — PxErp.exe 일반적으로 다운로드되지 않습니다 · ⋯ › 유지](../assets/lab7/lab7-00.png)
+
 - `C:\PA실습\발주요청.xlsx` 가 있어야 합니다. A열 거래처 · B열 자재 · C열 수량 · D열 결과(비어 있음)이고 요청은 세 건입니다. 없으면 [발주요청.xlsx](../assets/download/발주요청.xlsx)를 받아 `C:\PA실습\` 에 둡니다.
 - 로그온 사용자는 `INTERN01` ~ `INTERN08` 중 강사가 정해 준 번호입니다. 클라이언트 `100` 과 언어 `KO` 는 창에 미리 들어 있습니다.
 - 흐름 이름의 `HGD` 는 본인 이니셜로 바꿉니다.
