@@ -20,7 +20,8 @@ nav_order: 8
      ★ 기대값 — 발주요청 3건: V1003 · M-1001 × 5 → S, V1007 · M-2003 × 20 → E(구매 보류), V1008 · M-1002 × 10 → S.
        발주 번호는 데이터 초기화 직후 첫 저장이 4500000016 이고 저장마다 1씩 는다(실측 2026-10-06, 5번 둘째 컷의 17은 촬영 전 저장을 한 번 더 한 결과). 완료 기준은 S 2건 · E 1건으로 잡는다.
      ⚠️ 준비할 것
-       - ✔ PxErp.exe 배포 — SharePoint pa_practice 「문서/실습자료/PxErp.exe」(제작자 업로드 2026-10-06, 회사 정책상 exe 차단 없음).
+       - ✔ PxErp 배포 — SharePoint pa_practice 「문서/실습자료/PxErp.zip」(zip 안 PxErp/PxErp.exe, 46MB).
+         exe 를 그대로 올렸더니 Edge 가 다운로드 단계에서 「일반적으로 다운로드되지 않습니다」로 막아 zip 으로 바꿨다(2026-10-06).
          공개 저장소에 넣지 않는다(비공개 저장소 빌드 결과물 · 히스토리 49MB 누적). 서명은 비용이 들어 하지 않는다 —
          SmartScreen 「Windows의 PC 보호」는 1번 스텝에서 추가 정보 › 실행으로 넘긴다(스샷 없이 설명만, 제작자)
        - `발주요청.xlsx`(A 거래처 · B 자재 · C 수량 · D 결과, 3행)를 make_data.py 에 추가하고 PA실습.zip 재생성. 지금은 없다
@@ -67,12 +68,7 @@ nav_order: 8
 
 ## 준비
 
-- PX-ERP 실행 파일이 `C:\PA실습\PxErp\PxErp.exe` 에 있어야 합니다. 실습 SharePoint 의 [문서 › 실습자료 › PxErp.exe]({{ site.pa.sharepoint_site }}/Shared%20Documents/실습자료/PxErp.exe){:target="_blank"}를 받아 이 위치에 둡니다. 설치는 필요 없습니다.
-
-    Edge 다운로드 창에 「PxErp.exe은(는) 일반적으로 다운로드되지 않습니다」가 뜨면, 그 줄의 **⋯** 를 누르고 **유지**를 고릅니다. 서명하지 않은 실습용 앱이라 뜨는 경고입니다.
-
-    ![Edge 다운로드 — PxErp.exe 일반적으로 다운로드되지 않습니다 · ⋯ › 유지](../assets/lab7/lab7-00.png)
-
+- PX-ERP 실행 파일이 `C:\PA실습\PxErp\PxErp.exe` 에 있어야 합니다. 실습 SharePoint 의 [문서 › 실습자료 › PxErp.zip]({{ site.pa.sharepoint_site }}/Shared%20Documents/실습자료/PxErp.zip){:target="_blank"}을 받아 `C:\PA실습\` 에 풉니다. zip 안에 `PxErp` 폴더가 들어 있습니다. 설치는 필요 없습니다.
 - `C:\PA실습\발주요청.xlsx` 가 있어야 합니다. A열 거래처 · B열 자재 · C열 수량 · D열 결과(비어 있음)이고 요청은 세 건입니다. 없으면 [발주요청.xlsx](../assets/download/발주요청.xlsx)를 받아 `C:\PA실습\` 에 둡니다.
 - 로그온 사용자는 `INTERN01` ~ `INTERN08` 중 강사가 정해 준 번호입니다. 클라이언트 `100` 과 언어 `KO` 는 창에 미리 들어 있습니다.
 - 흐름 이름의 `HGD` 는 본인 이니셜로 바꿉니다.
