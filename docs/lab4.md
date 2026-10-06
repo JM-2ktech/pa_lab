@@ -639,15 +639,15 @@ Main 에 15줄, 하위 흐름 `Basic` 에 11줄이 있습니다. 디자이너 �
 **Main**
 
 ```
- 1  폴더 만들기: C:\PA실습 \ 정리완료 → 정리완료폴더
- 2  폴더의 파일 가져오기: C:\PA실습\정리대상 · *.pdf → Files
- 3  각각의 경우 CurrentItem in %Files%
- 4      파일 이동: %CurrentItem% → %정리완료폴더%
- 5  End
- 6  Excel 시작: 및 다음 문서 열기 C:\PA실습\거래처목록.xlsx → ExcelInstance
- 7  Excel 워크시트에서 읽기: 사용 가능한 모든 값 · 첫 번째 행을 열 이름으로 → ExcelData
- 8  새 목록 만들기 → AGradeList
- 9  각각의 경우 CurrentItem2 in %ExcelData%
+1   폴더 만들기: C:\PA실습 \ 정리완료 → 정리완료폴더
+2   폴더의 파일 가져오기: C:\PA실습\정리대상 · *.pdf → Files
+3   각각의 경우 CurrentItem in %Files%
+4       파일 이동: %CurrentItem% → %정리완료폴더%
+5   End
+6   Excel 시작: 및 다음 문서 열기 C:\PA실습\거래처목록.xlsx → ExcelInstance
+7   Excel 워크시트에서 읽기: 사용 가능한 모든 값 · 첫 번째 행을 열 이름으로 → ExcelData
+8   새 목록 만들기 → AGradeList
+9   각각의 경우 CurrentItem2 in %ExcelData%
 10      If %CurrentItem2['등급']% = A
 11          목록에 항목 추가: %CurrentItem2['거래처명']% → AGradeList
 12      End
@@ -659,15 +659,15 @@ Main 에 15줄, 하위 흐름 `Basic` 에 11줄이 있습니다. 디자이너 �
 **Basic** — 1~8줄은 작업 사용 안 함(25번 참고)
 
 ```
- 1  변수 설정: Course = PA 실습
- 2  메시지 표시: %Course% 과정을 시작합니다.
- 3  입력 대화 표시: 등급 확인 → UserInput
- 4  If %UserInput% = A
- 5      메시지 표시: A 등급입니다.
- 6  Else
- 7      메시지 표시: A 등급이 아닙니다.
- 8  End
- 9  반복 LoopIndex 1부터 3까지 1씩
+1   변수 설정: Course = PA 실습
+2   메시지 표시: %Course% 과정을 시작합니다.
+3   입력 대화 표시: 등급 확인 → UserInput
+4   If %UserInput% = A
+5       메시지 표시: A 등급입니다.
+6   Else
+7       메시지 표시: A 등급이 아닙니다.
+8   End
+9   반복 LoopIndex 1부터 3까지 1씩
 10      메시지 표시: %LoopIndex%번째 반복입니다.
 11  End
 ```
