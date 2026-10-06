@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>모의 공고 조회 — PA 실습 (숨김판)</title>
+<!--
+  Lab 5·6 의 웹 자동화 대상이다. 데이터는 data.js(make_data.py 가 만든다).
+  ⚠️ id 는 랩 본문과 PAD UI 요소가 잡는 좌표다. 바꾸면 랩 스크린샷과 선택기가 같이 어긋난다.
+     keyword · category · btnSearch · resultCount · resultTable · pageInfo · btnPrev · btnNext
+  ⚠️ 상태(진행중/마감)는 고정값이다. 교육일이 바뀌어도 결과 건수가 같아야 한다.
+-->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="banner">실습용 모의 사이트입니다. [숨김판] 끝 쪽 단추를 지우지 않고 display:none 으로 숨깁니다. 기관·공고·금액은 모두 가상입니다.</div>
+<header class="top"><h1>모의 공고 조회</h1></header>
+<main>
+  <form id="searchForm" class="search" onsubmit="return false">
+    <label for="keyword">공고명</label>
+    <input id="keyword" name="keyword" type="text" placeholder="키워드 입력" autocomplete="off">
+    <label for="category">분류</label>
+    <select id="category" name="category">
+      <option value="">전체</option>
+      <option value="용역">용역</option>
+      <option value="물품">물품</option>
+      <option value="공사">공사</option>
+    </select>
+    <button id="btnSearch" type="button">검색</button>
+  </form>
+
+  <div id="resultCount" class="count"></div>
+
+  <table id="resultTable" class="result">
+    <thead>
+      <tr><th>공고번호</th><th>공고명</th><th>수요기관</th><th>분류</th><th>추정가격(원)</th><th>공고일</th><th>마감일</th><th>상태</th></tr>
+    </thead>
+    <tbody id="resultBody"></tbody>
+  </table>
+
+  <div class="pager">
+    <button id="btnPrev" type="button">이전</button>
+    <span id="pageInfo"></span>
+    <button id="btnNext" type="button">다음</button>
+  </div>
+</main>
+<script src="data.js"></script>
+<script>
+(function () {
+  var PAGE = 10, page = 1, rows = [];
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+
+  // 검색 · 쪽 넘김은 주소(?q · cat · page)를 바꿔 페이지를 새로 연다(2026-10-05).
+  // 쪽을 화면 안에서만 바꾸면 PAD 페이지 선택기가 쪽 이동을 알아채지 못하고 다음 단추를 계속 누른다(Lab 5 28번 실측).
+  function go(p) {
+    var q = new URLSearchParams();
+    var kw = $('keyword').value.trim(), cat = $('category').value;
+    if (kw) q.set('q', kw);
+    if (cat) q.set('cat', cat);
+    if (p > 1) q.set('page', p);
+    location.href = location.pathname + (q.toString() ? '?' + q : '');
+  }
+
+  function render() {
+    var pages = Math.max(1, Math.ceil(rows.length / PAGE));
+    if (page > pages) page = pages;
+    var body = $('resultBody'), html = '';
+    if (!rows.length) {
+      html = '<tr class="empty"><td colspan="8">검색 결과가 없습니다.</td></tr>';
+    } else {
+      rows.slice((page - 1) * PAGE, page * PAGE).forEach(function (b) {
+        html += '<tr>' +
+          '<td>' + b.no + '</td>' +
+          "<td class='title'><a href='detail.html?no=" + b.no + "'>" + esc(b.title) + '</a></td>' +
+          '<td>' + esc(b.org) + '</td><td>' + b.cat + '</td>' +
+          '<td class="num">' + fmt(b.price) + '</td>' +
+          '<td>' + b.pub + '</td><td>' + b.due + '</td>' +
+          '<td><span class="st ' + (b.status === '마감' ? 'closed' : 'open') + '">' + b.status + '</span></td></tr>';
+      });
+    }
+    body.innerHTML = html;
+    $('resultCount').textContent = '검색 결과 ' + rows.length + '건';
+    $('pageInfo').textContent = rows.length ? page + ' / ' + pages : '0 / 0';
+    $('btnPrev').disabled = page <= 1;
+    $('btnNext').disabled = page >= pages;
+  }
+
+  $('btnSearch').addEventListener('click', function () { go(1); });
+  $('keyword').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); go(1); } });
+  $('btnPrev').addEventListener('click', function () { if (page > 1) go(page - 1); });
+  $('btnNext').addEventListener('click', function () {
+    if (page < Math.ceil(rows.length / PAGE)) go(page + 1);
+  });
+
+  var q = new URLSearchParams(location.search);
+  $('keyword').value = q.get('q') || '';
+  $('category').value = q.get('cat') || '';
+  var kw = $('keyword').value.trim().toLowerCase(), cat = $('category').value;
+  rows = window.BIDS.filter(function (b) {
+    return (!kw || b.title.toLowerCase().indexOf(kw) >= 0) && (!cat || b.cat === cat);
+  });
+  page = Math.max(1, parseInt(q.get('page'), 10) || 1);
+  render();
+  // 마지막 쪽에서는 다음 단추를 문서에서 지운다. 숨기기(display:none)만 하면 PAD 가 요소를 찾아 계속 누른다(2026-10-05 실측).
+  // 선택기 button[Id="btnNext"] 가 아무것도 찾지 못해야 PAD 페이지 선택기가 멈춘다
+  if (page >= Math.max(1, Math.ceil(rows.length / PAGE))) $('btnNext').style.display = 'none';
+  // 첫 쪽에서는 이전 단추도 지운다(제작자 2026-10-05) — 다음과 같은 규칙으로 맞춘다
+  if (page <= 1) $('btnPrev').style.display = 'none';
+})();
+</script>
+</body>
+</html>
