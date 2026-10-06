@@ -54,7 +54,7 @@ nav_order: 6
          ✔ PAD 선택기 문법 실측(2026-10-06, 숨김판 hide.html — 끝 쪽 단추를 display:none + disabled 로 남김):
            통함 `:eq()` · `:contains()` · `button[id="btnNext"]:not([disabled])`. 안 됨 `:visible` · 특성 목록의 Disabled 체크([Disabled="false"/"true"]).
            Disabled 특성 칸은 DOM 속성값을 보여 줄 뿐이고 HTML disabled 는 있고 없음(disabled="")이라 문자열 비교가 맞지 않는다.
-           실사이트에서 페이지 선택기가 끝없이 돌면 다음 단추 선택기에 :not([disabled]) 를 붙인다(숨김만 하는 사이트는 :not([style*="display: none"]) — PAD 미확인)
+           실사이트에서 페이지 선택기가 끝없이 돌면 다음 단추 선택기에 :not([disabled]) 를 붙인다(숨김만 하는 사이트는 :not([style*="display: none"]) 도 PAD 에서 안 된다(실측) — 그때는 흐름이 직접 쪽을 넘긴다)
          강의에서 말로 짚을 것: 페이지 선택기는 「다음」을 못 찾아야 멈춘다. 숨기기 · 비활성만 하는 실사이트에서는 끝없이 돈다 — 그때는 흐름이 직접 쪽을 넘긴다
        - 페이지 매김이 `btnNext` 의 disabled 에서 멈추는가(설계 §7). 멈추지 않으면 2쪽을 두 번 읽어 22행이 된다
        - 설계 §5 는 라이브 웹 도우미 미리 보기를 16행으로 적었다. 미리 보기가 현재 쪽 10행만 보이면 본문 23번 표현이 맞다. 실측 후 확정
