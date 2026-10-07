@@ -14,14 +14,22 @@ Cloud Flow 기반 DPA(1일차)와 Power Automate Desktop 기반 RPA(2일차)를 
 | Lab 4 | 80 | Desktop 흐름 기본 — 변수 · 조건 · 반복 · 파일과 폴더 · Excel |
 | Lab 5 | 70 | 웹 자동화 — 입력 · 검색 · 여러 쪽 표 추출 · Excel 저장 |
 | Lab 6 | 95 | 고객계약 발굴 — 키워드 반복 · 조건 거르기 · 예외 처리 · 결과 파일 |
+| Lab 7 | 70 | 레거시 ERP 발주 입력 — 데스크톱 앱 UI 자동화 · 창 선택기 · 키 보내기 · 상태바 결과 읽기 |
 
-**핸즈온 495분.** 표의 시간은 손을 움직이는 시간만입니다. 랩마다 개념 설명과 마무리로 10분 정도가 더 붙습니다.
+추가 과제
+
+| 과제 | 분 | 내용 |
+|---|---|---|
+| 챌린지 | 30~40 | 이상 항목 건별 조치 확인 — 개요 · 요구사항만 있는 선택 과제(Lab 1~3 을 일찍 끝낸 반) |
+
+**핸즈온 495분(Lab 1~6).** Lab 7 은 2일차 여유 시간용 추가 랩입니다. 표의 시간은 손을 움직이는 시간만입니다. 랩마다 개념 설명과 마무리로 10분 정도가 더 붙습니다.
 
 ## 준비물
 
 - Microsoft 365 계정과 Power Platform 환경(Environment Maker)
 - SharePoint 커뮤니케이션 사이트 하나 — 수강생 전원이 구성원(편집 권한)
 - 2일차: Power Automate Desktop과 Edge 확장
+- Lab 7: 실습용 앱 PX-ERP(`PxErp.zip`) — 실습 SharePoint `문서/실습자료/` 에 둡니다. 저장소에는 넣지 않습니다
 
 ## 로컬에서 보기
 
@@ -37,20 +45,23 @@ bundle exec jekyll serve --port 4002
 ```
 pa_lab/
 ├── _config.yml                  Jekyll 설정
-├── _sass/custom/custom.scss     커스텀 스타일 (정본 cs_lab)
+├── _sass/custom/custom.scss     커스텀 스타일 (cs_lab 에서 가져옴 · 독립 운영)
 ├── .github/workflows/pages.yml  GitHub Pages 배포
 ├── index.md                     홈
-├── docs/lab1.md ~ lab6.md       Lab 1~6
+├── docs/lab1.md ~ lab7.md       Lab 1~7
+├── docs/challenge.md            챌린지(선택 과제)
 ├── practice/bid/                Lab 5·6 웹 자동화 대상 — 모의 공고 사이트
 └── assets/
-    ├── lab1/ ~ lab6/            스텝 스크린샷
+    ├── lab1/ ~ lab7/            스텝 스크린샷
     └── download/                실습용 배포 파일
 ```
 
 ## 실습 자료
 
 - `assets/download/점검기록.xlsx` — Lab 2·3
-- `assets/download/PA실습.zip` — Lab 4~6
+- `assets/download/PA실습.zip` — Lab 4~7
+- `assets/download/발주요청.xlsx` — Lab 7 (zip 안의 것과 같은 단독 파일)
+- `PxErp.zip` — Lab 7 대상 앱. 실습 SharePoint 에만 있습니다
 - `practice/bid/` — 모의 공고 사이트. 데이터는 `practice/bid/data.js`
 
 > 회사·기관·공고·금액은 전부 **가상**입니다.
