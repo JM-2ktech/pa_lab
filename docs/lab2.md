@@ -164,10 +164,10 @@ nav_order: 3
     식 편집기에 아래를 붙여넣고 **추가**를 누릅니다.
 
     ```
-    formatDateTime(addToTime(convertFromUtc(utcNow(),'Korea Standard Time'),-1,'Month'),'yyyy-MM')
+    formatDateTime(addToTime(convertFromUtc(utcNow(),'Korea Standard Time'),-2,'Month'),'yyyy-MM')
     ```
 
-    한국 시간으로 오늘에서 한 달을 뺀 달을 `yyyy-MM` 으로 냅니다. 10월에 돌리면 `2026-09` 입니다.
+    한국 시간으로 오늘에서 두 달을 뺀 달을 `yyyy-MM` 으로 냅니다. 11월에 돌리면 `2026-09` 입니다.
 
     ![식 편집기에 대상월 식을 붙여넣은 화면](../assets/lab2/lab2-13b.png)
 
